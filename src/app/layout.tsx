@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/shared/header";
+import { Header, Footer } from "@/components/shared";
 
 const interFont = Inter({
   variable: "--font-inter",
@@ -26,12 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${interFont.variable} ${playfairFont.variable} antialiased`}
+        className={`${interFont.variable} ${playfairFont.variable} flex min-h-screen flex-col antialiased`}
       >
-        <div className="min-h-screen">
-          <Header />
-          <main>{children}</main>
-        </div>
+        <Header />
+        <main className="flex-auto flex items-center justify-center">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
