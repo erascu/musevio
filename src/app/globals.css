@@ -40,14 +40,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-.inter {
-  font-family: var(--font-inter), sans-serif;
-}
-
-.playfair {
-  font-family: var(--font-playfair), serif;
-}
-
 :root {
   --radius: 0.625rem;
   --wine: #801336;
@@ -84,10 +76,17 @@
   --foreground: #000;
 }
 
+.inter {
+  font-family: var(--font-inter), sans-serif;
+}
+
+.playfair {
+  font-family: var(--font-playfair), serif;
+}
+
 * {
   font-family: var(--font-inter), sans-serif;
   font-size: 18px;
-  color: #000;
 }
 
 @layer base {
