@@ -25,13 +25,13 @@ export const Header: React.FC<Props> = ({ className }) => {
   ];
 
   return (
-    <header className={cn("border border-b", className)}>
+    <header className={cn("", className)}>
       <Container className="flex items-center justify-between py-8 px-4">
         <Link className="logo" href="/">
           <Image
             src="/logo.png"
             alt="Musevio Logo"
-            className="min-w-[186px]"
+            className="min-w-[186px] hover:transition-all hover:opacity-90"
             width={186}
             height={39}
             priority
@@ -44,7 +44,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 <li className="flex items-center relative" key={i}>
                   <Link
                     href=""
-                    className="inline-block pr-10 text-link hover:text-primary text-lg group text-nowrap"
+                    className="inline-block mr-10 text-primary hover:text-wine text-lg group text-nowrap"
                   >
                     {link.title}
                     <ChevronRight
