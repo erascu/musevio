@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function NotFound() {
   return (
-    <Container className="px-4 pt-30 flex justify-center items-center flex-col md:flex-row">
+    <Container className="p-4 my-20 flex justify-center items-center flex-col md:flex-row">
       <Image
         src="/404.svg"
         alt="Not found"
