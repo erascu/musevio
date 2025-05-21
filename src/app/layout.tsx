@@ -29,9 +29,7 @@ export default function RootLayout({
         className={`${interFont.variable} ${playfairFont.variable} flex min-h-screen flex-col antialiased`}
       >
         <Header />
-        <main className="flex-auto flex items-center justify-center">
-          {children}
-        </main>
+        <main className="flex-auto">{children}</main>
         <Footer />
       </body>
     </html>
