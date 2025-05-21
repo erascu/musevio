@@ -10,7 +10,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
   return (
     <footer className={cn("py-8 px-4 border-t", className)}>
       <Container>
-        <p className="!text-sm text-ring font-light">
+        <p className="!text-[11px] sm:!text-sm text-ring font-light text-center lg:text-left">
           ©2025 Musevio – art. history. online. All Rights Reserved.
         </p>
       </Container>
