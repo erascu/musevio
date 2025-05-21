@@ -51,7 +51,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 <li className="flex items-center relative" key={i}>
                   <Link
                     href={item.href}
-                    className={`inline-block mr-10 text-primary hover:text-wine text-lg group text-nowrap ${
+                    className={`inline-block mr-10 text-primary focus:text-wine hover:text-wine text-lg group text-nowrap ${
                       pathname === item.href && "text-wine"
                     }`}
                   >
