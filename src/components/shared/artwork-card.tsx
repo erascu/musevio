@@ -7,6 +7,7 @@ import { Heart } from "lucide-react";
 
 interface Props {
   id: number;
+  section: string;
   imageUrl: string;
   title: string;
   classification: string;
@@ -16,6 +17,7 @@ interface Props {
 
 export const ArtworkCard: React.FC<Props> = ({
   id,
+  section,
   title,
   classification,
   dated,
@@ -49,7 +51,7 @@ export const ArtworkCard: React.FC<Props> = ({
       </div>
       <div className="px-5 py-2">
         <h1>
-          <Link href={`/antiquities/${id}`}>
+          <Link href={`/${section}/${id}`}>
             <span className="playfair font-bold hover:underline">{title}</span>
           </Link>
         </h1>

@@ -3,28 +3,19 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
 
-interface Props {
-  className?: string;
-}
-
 interface Category {
   name: string;
   href: string;
 }
 
-const cats: Category[] = [
-  { name: "All", href: "" },
-  { name: "Coins", href: "" },
-  { name: "Sculptures", href: "" },
-  { name: "Vessels", href: "" },
-  { name: "Jewelery", href: "" },
-  { name: "Seals", href: "" },
-  { name: "Manuscripts", href: "" },
-];
+interface Props {
+  className?: string;
+  categories: Category[];
+}
 
 const activeIndex: number = 0;
 
-export const Categories: React.FC<Props> = ({ className }) => {
+export const Categories: React.FC<Props> = ({ categories, className }) => {
   return (
     <div
       className={cn(
@@ -32,7 +23,7 @@ export const Categories: React.FC<Props> = ({ className }) => {
         className
       )}
     >
-      {cats.map((cat, i) => (
+      {categories.map((cat, i) => (
         <Link href={cat.href} key={i}>
           <Button
             variant={activeIndex === i ? "default" : "outline"}
