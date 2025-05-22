@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "ids.lib.harvard.edu",
         pathname: "/ids/view/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.artic.edu",
+        pathname: "/iiif/2/**",
+      },
     ],
   },
 };
