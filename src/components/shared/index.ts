@@ -1,3 +1,6 @@
-export { Container } from "./container";
 export { Header } from "./header";
+export { Container } from "./container";
+export { Categories } from "./categories";
+export { SortPopup } from "./sort-popup";
+export { ArtworkCard } from "./artwork-card";
 export { Footer } from "./footer";
