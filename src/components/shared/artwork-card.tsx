@@ -50,11 +50,11 @@ export const ArtworkCard: React.FC<Props> = ({
         </Button>
       </div>
       <div className="px-5 py-2">
-        <h1>
+        <h2>
           <Link href={`/${section}/${id}`}>
             <span className="playfair font-bold hover:underline">{title}</span>
           </Link>
-        </h1>
+        </h2>
         <p className="!text-base text-ring italic">{classification}</p>
         <p className="!text-base">{dated}</p>
       </div>
