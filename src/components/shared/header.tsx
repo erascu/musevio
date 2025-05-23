@@ -1,12 +1,13 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { BurgerMenu } from "./index";
 import { usePathname } from "next/navigation";
 import { Container } from "./index";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Heart, Menu } from "lucide-react";
+import { ChevronRight, Heart } from "lucide-react";
 
 interface Props {
   className?: string;
@@ -42,9 +43,7 @@ export const Header: React.FC<Props> = ({ className }) => {
           />
         </Link>
         <div className="flex items-center">
-          <Link href="" className="lg:hidden ">
-            <Menu className="text-wine" size={30} />
-          </Link>
+          <BurgerMenu className="lg:hidden" />
           <nav className="hidden lg:block">
             <ul className="flex items-center">
               {links.map((item, i) => (
