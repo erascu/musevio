@@ -12,13 +12,14 @@ const buttonVariants = cva(
         default: "bg-wine text-card hover:bg-wine/90 cursor-pointer",
         fav: "bg-card text-ring cursor-pointer",
         favnav: "bg-wine border border-white rounded-md text-white",
+        add: "border border-ring border-dashed bg-background text-ring cursor-pointer hover:bg-ring/5",
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
           "border border-wine text-wine bg-background cursor-pointer shadow-xs hover:bg-wine hover:text-white dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-        ghost: "",
+        ghost: "cursor-pointer hover:opacity-50",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
