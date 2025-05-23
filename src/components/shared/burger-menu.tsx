@@ -45,15 +45,17 @@ export const BurgerMenu: React.FC<Props> = ({ className }) => {
             Use this menu to navigate to the main sections of the site.
           </DialogDescription>
           <div className="absolute top-5 left-5">
-            <Link href="/collections">
-              <Button
-                variant="favnav"
-                className="flex items-center text-lg font-[300] w-[165px]"
-              >
-                <Heart size={18} />
-                Collections
-              </Button>
-            </Link>
+            <SheetClose asChild>
+              <Link href="/collections">
+                <Button
+                  variant="favnav"
+                  className="flex items-center text-lg font-[300] w-[165px]"
+                >
+                  <Heart size={18} />
+                  Collections
+                </Button>
+              </Link>
+            </SheetClose>
           </div>
           <nav className="pt-20">
             {menuItems.map((item, i) => {
