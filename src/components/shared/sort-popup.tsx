@@ -16,7 +16,7 @@ export const SortPopup: React.FC<Props> = ({ className }) => {
     >
       <ArrowUpDown size={14} />
       <p className="!text-sm">Sort by:</p>
-      <p className="text-wine !text-sm">popularity</p>
+      <p className="text-wine !text-sm">views</p>
     </div>
   );
 };
