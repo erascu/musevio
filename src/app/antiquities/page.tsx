@@ -1,12 +1,14 @@
 import {
-  ArtworkCard,
   Categories,
   Container,
   SortPopup,
+  PaginationWithLinks,
 } from "@/components/shared";
 import { Input } from "@/components/ui";
 import { Search } from "lucide-react";
 import React from "react";
+import { getAntiquities } from "@/app/services/api";
+import AntqsItems from "@/components/shared/antqs-items";
 
 const antiquityCats = [
   { name: "All", href: "" },
@@ -18,7 +20,15 @@ const antiquityCats = [
   { name: "Manuscripts", href: "" },
 ];
 
-export default function Antiquities() {
+interface ItemsProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function Antiquities({ searchParams }: ItemsProps) {
+  const params = await searchParams;
+  const currentPage = parseInt((params.page as string) || "1");
+  const { fetchedAntqs, totalRecords } = await getAntiquities(currentPage);
+
   return (
     <Container className="px-4">
       <div className="w-[250px] border-b pb-3">
@@ -41,13 +51,13 @@ export default function Antiquities() {
         <SortPopup />
       </div>
       <div className="pt-3 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <ArtworkCard
-          id={0}
-          section="antiquities"
-          imageUrl="/gammel.jpeg"
-          title="Gammel fisker på nedsnødd kyst (Old Fisherman on Snow-covered Coast)"
-          classification="Paintings"
-          dated="1910 - 1911"
+        <AntqsItems fetchedAntqs={fetchedAntqs} />
+      </div>
+      <div className="pb-8">
+        <PaginationWithLinks
+          page={currentPage}
+          pageSize={12}
+          totalCount={totalRecords}
         />
       </div>
     </Container>
