@@ -5,4 +5,6 @@ export { SortPopup } from "./sort-popup";
 export { ArtworkCard } from "./artwork-card";
 export { BurgerMenu } from "./burger-menu";
 export { NoCollections } from "./no-collections";
+export { CardSkeleton } from "./card-skeleton";
+export { PaginationWithLinks } from "./pagination-with-links";
 export { Footer } from "./footer";
