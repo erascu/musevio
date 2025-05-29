@@ -61,7 +61,9 @@ export const ArtworkCard: React.FC<Props> = ({
         <h2>
           <Link href={`/${section}/${id}`}>
             <span className="playfair font-bold hover:underline">
-              {title.length > 75 ? title.substring(0, 65) + "..." : title}
+              {(!title ? "" : title.length > 75)
+                ? title.substring(0, 65) + "..."
+                : title}
             </span>
           </Link>
         </h2>
