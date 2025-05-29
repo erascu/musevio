@@ -1,11 +1,12 @@
+"use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 interface Category {
   name: string;
-  href: string;
+  filterString: string;
 }
 
 interface Props {
@@ -13,9 +14,26 @@ interface Props {
   categories: Category[];
 }
 
-const activeIndex: number = 0;
-
 export const Categories: React.FC<Props> = ({ categories, className }) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const currentFilter = searchParams.get("filterBy") || "All";
+
+  const [activeFilter, setActiveFilter] = useState(currentFilter);
+
+  const handleClick = (filter: string) => {
+    setActiveFilter(filter);
+
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("filterBy", filter);
+    newParams.set("page", "1");
+    router.push(`?${newParams.toString()}`);
+  };
+
+  useEffect(() => {
+    setActiveFilter(currentFilter);
+  }, [currentFilter]);
+
   return (
     <div
       className={cn(
@@ -24,15 +42,15 @@ export const Categories: React.FC<Props> = ({ categories, className }) => {
       )}
     >
       {categories.map((cat, i) => (
-        <Link href={cat.href} key={i}>
-          <Button
-            variant={activeIndex === i ? "default" : "outline"}
-            size="custom"
-            className={cn("!text-sm", className)}
-          >
-            {cat.name}
-          </Button>
-        </Link>
+        <Button
+          key={i}
+          variant={cat.filterString === activeFilter ? "default" : "outline"}
+          size="custom"
+          className={cn("!text-sm", className)}
+          onClick={() => handleClick(cat.filterString)}
+        >
+          {cat.name}
+        </Button>
       ))}
     </div>
   );
