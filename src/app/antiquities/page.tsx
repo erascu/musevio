@@ -2,22 +2,23 @@ import {
   Categories,
   Container,
   SortPopup,
+  CardSkeleton,
   PaginationWithLinks,
+  SearchInput,
 } from "@/components/shared";
-import { Input } from "@/components/ui";
-import { Search } from "lucide-react";
-import React from "react";
+import React, { Suspense } from "react";
 import { getAntiquities } from "@/app/services/api";
 import AntqsItems from "@/components/shared/antqs-items";
+import NotFound from "../not-found";
 
 const antiquityCats = [
-  { name: "All", href: "" },
-  { name: "Coins", href: "" },
-  { name: "Sculptures", href: "" },
-  { name: "Vessels", href: "" },
-  { name: "Jewelery", href: "" },
-  { name: "Seals", href: "" },
-  { name: "Manuscripts", href: "" },
+  { name: "All", filterString: "All" },
+  { name: "Coins", filterString: "Coins" },
+  { name: "Sculptures", filterString: "Sculpture" },
+  { name: "Vessels", filterString: "Vessels" },
+  { name: "Jewelry", filterString: "Jewelry" },
+  { name: "Seals", filterString: "Seals" },
+  { name: "Manuscripts", filterString: "Manuscripts" },
 ];
 
 interface ItemsProps {
@@ -27,7 +28,19 @@ interface ItemsProps {
 export default async function Antiquities({ searchParams }: ItemsProps) {
   const params = await searchParams;
   const currentPage = parseInt((params.page as string) || "1");
-  const { fetchedAntqs, totalRecords } = await getAntiquities(currentPage);
+  const filter = params.filterBy as string;
+  const searchQuery = (params.keyword as string) || "";
+
+  const sort = (params.sort as string) || "totalpageviews";
+  const sortorder = (params.sortorder as string) || "desc";
+
+  const { totalRecords, recordsInfo } = await getAntiquities(
+    currentPage,
+    filter,
+    sort,
+    sortorder,
+    searchQuery
+  );
 
   return (
     <Container className="px-4">
@@ -37,29 +50,40 @@ export default async function Antiquities({ searchParams }: ItemsProps) {
       <div className="flex flex-col ">
         <div className="flex justify-between items-start flex-col min-[1100px]:flex-row min-[1100px]:items-center">
           <Categories categories={antiquityCats} />
-          <div className="relative">
-            <Input
-              placeholder="Search"
-              className="!text-sm text-wine pl-8 w-[100%] min-[370px]:w-[335px]"
-            />
-            <Search
-              strokeWidth={1.5}
-              className="text-ring absolute top-[5px] left-[7px]"
-            />
-          </div>
+          <SearchInput />
         </div>
         <SortPopup />
       </div>
+      {recordsInfo.page > recordsInfo.pages && <NotFound />}
       <div className="pt-3 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <AntqsItems fetchedAntqs={fetchedAntqs} />
+        {recordsInfo.page === 0 && (
+          <div className="flex justify-center items-center">
+            No &apos;{searchQuery}&apos; records found
+          </div>
+        )}
+        <Suspense
+          fallback={[...new Array(8)].map((_, i) => (
+            <CardSkeleton key={i} />
+          ))}
+        >
+          <AntqsItems
+            page={currentPage}
+            filter={filter}
+            searchQuery={searchQuery}
+            sort={sort}
+            sortorder={sortorder}
+          />
+        </Suspense>
       </div>
-      <div className="pb-8">
-        <PaginationWithLinks
-          page={currentPage}
-          pageSize={12}
-          totalCount={totalRecords}
-        />
-      </div>
+      {!(recordsInfo.page > recordsInfo.pages || totalRecords === 0) && (
+        <div className="pb-8">
+          <PaginationWithLinks
+            page={currentPage}
+            pageSize={12}
+            totalCount={totalRecords}
+          />
+        </div>
+      )}
     </Container>
   );
 }
