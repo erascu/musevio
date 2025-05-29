@@ -6,5 +6,6 @@ export { ArtworkCard } from "./artwork-card";
 export { BurgerMenu } from "./burger-menu";
 export { NoCollections } from "./no-collections";
 export { CardSkeleton } from "./card-skeleton";
+export { SearchInput } from "./search-input";
 export { PaginationWithLinks } from "./pagination-with-links";
 export { Footer } from "./footer";
