@@ -9,14 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-wine text-card hover:bg-wine/90 cursor-pointer",
+        default:
+          "bg-wine border border-wine text-card hover:bg-wine/90 cursor-pointer",
         fav: "bg-card text-ring cursor-pointer",
         favnav: "bg-wine border border-white rounded-md text-white",
         add: "border border-ring border-dashed bg-background text-ring cursor-pointer hover:bg-ring/5",
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border border-wine text-wine bg-background cursor-pointer shadow-xs hover:bg-wine hover:text-white dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border border-wine text-wine bg-background cursor-pointer hover:bg-wine hover:text-white dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost: "cursor-pointer hover:opacity-50",
@@ -25,6 +26,7 @@ const buttonVariants = cva(
       size: {
         default: "h-9 px-4 py-4 has-[>svg]:px-4",
         fav: "h-8 w-8 p-2",
+        searchClose: "h-[15px] w-[15px]",
         custom: "h-7.5 px-4 py-1 leading-none",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",

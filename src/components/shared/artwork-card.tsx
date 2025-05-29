@@ -39,8 +39,9 @@ export const ArtworkCard: React.FC<Props> = ({
           src={imageUrl ? imageUrl : "no-img.svg"}
           alt={title}
           fill
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="rounded-t-lg object-cover"
+          style={{ objectPosition: "center 25%" }}
         />
         <Button
           variant="fav"
@@ -59,7 +60,11 @@ export const ArtworkCard: React.FC<Props> = ({
       <div className="px-5 py-2">
         <h2>
           <Link href={`/${section}/${id}`}>
-            <span className="playfair font-bold hover:underline">{title}</span>
+            <span className="playfair font-bold hover:underline">
+              {(!title ? "" : title.length > 75)
+                ? title.substring(0, 65) + "..."
+                : title}
+            </span>
           </Link>
         </h2>
         <p className="!text-base text-ring italic">{classification}</p>

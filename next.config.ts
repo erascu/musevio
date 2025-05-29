@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "nrs.harvard.edu",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "www.artic.edu",
         pathname: "/iiif/2/**",
       },

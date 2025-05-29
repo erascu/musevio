@@ -51,11 +51,14 @@ export const Header: React.FC<Props> = ({ className }) => {
                   <Link
                     href={item.href}
                     className={`inline-block mr-10 text-primary focus:text-wine hover:text-wine text-lg group text-nowrap ${
-                      pathname === item.href && "text-wine"
+                      (pathname === item.href ||
+                        pathname.startsWith(`${item.href}/`)) &&
+                      "text-wine"
                     }`}
                   >
                     {item.title}
-                    {item.href === pathname ? (
+                    {pathname === item.href ||
+                    pathname.startsWith(`${item.href}/`) ? (
                       <ChevronRight
                         size={16}
                         className="text-wine absolute left-[-20px] top-1/2 -translate-y-1/2"
