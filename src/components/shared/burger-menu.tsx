@@ -59,7 +59,8 @@ export const BurgerMenu: React.FC<Props> = ({ className }) => {
           </div>
           <nav className="pt-20">
             {menuItems.map((item, i) => {
-              const isActive = pathname === item.href;
+              const isActive =
+                pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <SheetClose key={i} asChild>
                   <Link
