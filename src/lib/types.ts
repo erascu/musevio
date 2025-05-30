@@ -14,6 +14,29 @@ export interface Antiquity {
   }[];
 }
 
+export interface FineArt {
+  info: {
+    total: number;
+    parameters: {
+      skip: number;
+    };
+  };
+  data: {
+    id: number;
+    title: string;
+    type: string;
+    creation_date: number | string;
+    technique: string;
+    department: string;
+    collection: string;
+    images: {
+      web: {
+        url: string;
+      };
+    };
+  }[];
+}
+
 export interface ItemProps {
   records: [
     {
@@ -28,4 +51,27 @@ export interface ItemProps {
       description?: string;
     }
   ];
+}
+
+export interface FineArtItemProps {
+  data: {
+    id: number;
+    title: string;
+    type: string;
+    creation_date: number | string;
+    technique: string;
+    department: string;
+    collection: string;
+    description: string;
+    creators: [
+      {
+        description: string;
+      }
+    ];
+    images: {
+      web: {
+        url: string;
+      };
+    };
+  };
 }
