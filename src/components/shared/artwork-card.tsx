@@ -1,9 +1,11 @@
+"use client";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui";
 import { Heart, Trash2 } from "lucide-react";
+import { useFavItemsStore } from "@/stores/favItems-store";
 
 interface Props {
   id: number;
@@ -26,6 +28,11 @@ export const ArtworkCard: React.FC<Props> = ({
   editCards,
   className,
 }) => {
+  // const addFavItem = useFavItemsStore((state) => state.addFavItem);
+  const removeFavItem = useFavItemsStore((state) => state.removeFavItem);
+  const toggleFavItem = useFavItemsStore((state) => state.toggleFavItem);
+  const isActive = useFavItemsStore((state) => state.isActive(id, section));
+
   return (
     <div
       className={cn(
@@ -45,6 +52,17 @@ export const ArtworkCard: React.FC<Props> = ({
         />
         <Button
           variant="fav"
+          onClick={() => {
+            toggleFavItem({
+              id,
+              section,
+              title,
+              classification,
+              dated,
+              imageUrl,
+              editCards,
+            });
+          }}
           size="fav"
           className={`absolute group top-2.5 right-2.5 bg-card p-1 ${
             editCards && "hidden"
@@ -53,7 +71,9 @@ export const ArtworkCard: React.FC<Props> = ({
           <Heart
             strokeWidth={2}
             size={20}
-            className="group-hover:transition-all group-hover:text-wine"
+            className={`group-hover:transition-all group-hover:text-wine group-active:text-wine group-active:fill-wine group-focus:fill-wine group-focus:text-wine ${
+              isActive && "text-wine fill-wine"
+            }`}
           />
         </Button>
       </div>
@@ -71,6 +91,7 @@ export const ArtworkCard: React.FC<Props> = ({
         <p className="!text-base">{dated}</p>
         {editCards && (
           <Button
+            onClick={() => removeFavItem(id)}
             variant="ghost"
             size="fav"
             className="absolute right-4 bottom-4"
