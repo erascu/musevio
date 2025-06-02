@@ -1,5 +1,5 @@
 import { ArtworkCard } from "./";
-import { getAntiquities } from "@/app/services/api";
+import { getAntiquities } from "@/services/api";
 
 export default async function AntqsItems({
   page,
