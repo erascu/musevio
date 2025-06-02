@@ -7,7 +7,7 @@ import {
   // SortPopup,
 } from "@/components/shared";
 import React from "react";
-import { getFineArt } from "../services/api";
+import { getFineArt } from "../../services/api";
 import NotFound from "../not-found";
 
 const fineartCats = [
