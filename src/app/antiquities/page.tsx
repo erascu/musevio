@@ -7,7 +7,7 @@ import {
   SearchInput,
 } from "@/components/shared";
 import React, { Suspense } from "react";
-import { getAntiquities } from "@/app/services/api";
+import { getAntiquities } from "@/services/api";
 import AntqsItems from "@/components/shared/antqs-items";
 import NotFound from "../not-found";
 
