@@ -1,5 +1,5 @@
 import NotFound from "@/app/not-found";
-import { getFineArtItem } from "@/app/services/api";
+import { getFineArtItem } from "@/services/api";
 import { Container } from "@/components/shared";
 
 export default async function ItemPage({
