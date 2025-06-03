@@ -6,6 +6,15 @@ import React from "react";
 import { Button } from "../ui";
 import { Heart, Trash2 } from "lucide-react";
 import { useFavItemsStore } from "@/stores/favItems-store";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useNewCollectionStore } from "@/stores/section-store";
 
 interface Props {
   id: number;
@@ -33,10 +42,14 @@ export const ArtworkCard: React.FC<Props> = ({
   const toggleFavItem = useFavItemsStore((state) => state.toggleFavItem);
   const isActive = useFavItemsStore((state) => state.isActive(id, section));
 
+  const newCol = useNewCollectionStore((state) => state.newCollection);
+
   return (
     <div
       className={cn(
-        "bg-card rounded-lg min-h-[350px] shadow-md  relative",
+        `bg-card rounded-lg ${
+          newCol.length > 0 ? "min-h-[400px]" : "min-h-[350px]"
+        } shadow-md  relative`,
         className
       )}
     >
@@ -89,6 +102,26 @@ export const ArtworkCard: React.FC<Props> = ({
         </h2>
         <p className="!text-base text-ring italic">{classification}</p>
         <p className="!text-base">{dated}</p>
+        <div className="absolute right-14 bottom-4">
+          {newCol.length > 0 && (
+            <Select>
+              <SelectTrigger className="w-[200px]">
+                <SelectValue placeholder="Move to..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {newCol
+                    ? newCol.map((item, i) => (
+                        <SelectItem value={item} key={i}>
+                          {item}
+                        </SelectItem>
+                      ))
+                    : ""}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          )}
+        </div>
         {editCards && (
           <Button
             onClick={() => removeFavItem(id)}
