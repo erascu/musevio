@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface NewCollectionState {
   newCollection: string[];
@@ -6,14 +7,21 @@ interface NewCollectionState {
   removeNewCollection: (title: string) => void;
 }
 
-export const useNewCollectionStore = create<NewCollectionState>((set) => ({
-  newCollection: [],
-  addNewCollection: (title) =>
-    set((state) => ({
-      newCollection: [...state.newCollection, title],
-    })),
-  removeNewCollection: (title) =>
-    set((state) => ({
-      newCollection: state.newCollection.filter((t) => t !== title),
-    })),
-}));
+export const useNewCollectionStore = create<NewCollectionState>()(
+  persist(
+    (set) => ({
+      newCollection: [],
+      addNewCollection: (title) =>
+        set((state) => ({
+          newCollection: [...state.newCollection, title],
+        })),
+      removeNewCollection: (title) =>
+        set((state) => ({
+          newCollection: state.newCollection.filter((t) => t !== title),
+        })),
+    }),
+    {
+      name: "new-collection-storage", // unique name
+    }
+  )
+);
