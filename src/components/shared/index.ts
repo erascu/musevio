@@ -8,4 +8,5 @@ export { NoCollections } from "./no-collections";
 export { CardSkeleton } from "./card-skeleton";
 export { SearchInput } from "./search-input";
 export { PaginationWithLinks } from "./pagination-with-links";
+export { SavedColPanel } from "./savedCol-panel";
 export { Footer } from "./footer";
