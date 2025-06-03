@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useNewCollectionStore } from "@/stores/section-store";
+import { toast } from "sonner";
 
 interface Props {
   className?: string;
@@ -52,12 +53,24 @@ export const SavedColPanel: React.FC<Props> = ({ className }) => {
         setInput("");
         setOpen(false);
       } else {
-        alert("A collection with this title already exists");
+        toast("⚠️ Duplicate Detected", {
+          description: (
+            <span className="text-white font-light !text-sm">
+              A collection with this title already exists
+            </span>
+          ),
+        });
       }
     }
 
     if (input.length === 0) {
-      alert("Collection name must be at least 1 character");
+      toast("❌ Validation Error", {
+        description: (
+          <span className="text-white font-light !text-sm">
+            Collection name must be at least 1 character
+          </span>
+        ),
+      });
     }
   };
   return (
