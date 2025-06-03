@@ -104,7 +104,7 @@ export const ArtworkCard: React.FC<Props> = ({
         <p className="!text-base">{dated}</p>
         <div className="absolute right-14 bottom-4">
           {newCol.length > 0 && editCards && (
-            <Select>
+            <Select onValueChange={(sectionName) => console.log(sectionName)}>
               <SelectTrigger className="w-[200px]">
                 <SelectValue placeholder="Move to..." />
               </SelectTrigger>
