@@ -17,7 +17,9 @@ export async function getAntiquities(
     : "";
 
   const res = await fetch(
-    `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=1&page=${page}&size=12&classification=${appliedFilter}&sort=${sort}&sortorder=${sortorder}${searchParam}`
+    `https://api.harvardartmuseums.org/object?apikey=${apiKey}&hasimage=1&page=${page}&size=12&classification=${
+      searchParam.length > 0 ? defaultFilters : appliedFilter
+    }&sort=${sort}&sortorder=${sortorder}${searchParam}`
   );
   const getAntqs: Antiquity = await res.json();
   // await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -44,10 +46,11 @@ export async function getFineArt(
   const pageNr = (page - 1) * 12;
   const filterLogic = filter && filter !== "All" ? `&type=${filter}` : "";
   const searchQ = searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : "";
+
   const res = await fetch(
-    `https://openaccess-api.clevelandart.org/api/artworks?has_image=1&limit=12&skip=${pageNr}${filterLogic}${
-      searchQ && `&q=${searchQ}`
-    }`
+    `https://openaccess-api.clevelandart.org/api/artworks?has_image=1&limit=12&skip=${pageNr}${
+      searchQ.length > 0 ? "" : filterLogic
+    }${searchQ && `&q=${searchQ}`}`
   );
   const getFineArt: FineArt = await res.json();
   const fineArtInfo = getFineArt.info;
