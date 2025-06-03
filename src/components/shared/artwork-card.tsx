@@ -48,7 +48,7 @@ export const ArtworkCard: React.FC<Props> = ({
     <div
       className={cn(
         `bg-card rounded-lg ${
-          newCol.length > 0 ? "min-h-[400px]" : "min-h-[350px]"
+          newCol.length > 0 && editCards ? "min-h-[400px]" : "min-h-[350px]"
         } shadow-md  relative`,
         className
       )}
@@ -103,7 +103,7 @@ export const ArtworkCard: React.FC<Props> = ({
         <p className="!text-base text-ring italic">{classification}</p>
         <p className="!text-base">{dated}</p>
         <div className="absolute right-14 bottom-4">
-          {newCol.length > 0 && (
+          {newCol.length > 0 && editCards && (
             <Select>
               <SelectTrigger className="w-[200px]">
                 <SelectValue placeholder="Move to..." />
