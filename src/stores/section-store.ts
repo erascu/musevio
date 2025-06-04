@@ -21,7 +21,7 @@ export const useNewCollectionStore = create<NewCollectionState>()(
         })),
     }),
     {
-      name: "new-collection-storage", // unique name
+      name: "new-collection-storage",
     }
   )
 );
