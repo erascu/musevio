@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dialog";
 import { useNewCollectionStore } from "@/stores/section-store";
 import { toast } from "sonner";
+import { useFavItemsStore } from "@/stores/favItems-store";
 
 interface Props {
   className?: string;
@@ -27,7 +28,19 @@ export const SavedColPanel: React.FC<Props> = ({ className }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { section } = useParams<{ section: string }>();
 
+  const favItems = useFavItemsStore((state) => state.favItems);
   const newCollection = useNewCollectionStore((state) => state.newCollection);
+  const removeFavItem = useFavItemsStore((state) => state.removeFavItem);
+
+  const removeCollectionItems = (secTit: string) =>
+    favItems
+      .filter((item) => item.newCollectionSect && item.newCollectionSect)
+      .map(
+        (col) =>
+          col.newCollectionSect &&
+          col.newCollectionSect.toLowerCase() === secTit.toLowerCase() &&
+          removeFavItem(col.id)
+      );
 
   const addNewCollection = useNewCollectionStore(
     (state) => state.addNewCollection
@@ -127,6 +140,7 @@ export const SavedColPanel: React.FC<Props> = ({ className }) => {
                     className="font-[300]"
                     onClick={() => {
                       removeNewCollection(title);
+                      removeCollectionItems(title);
                     }}
                   >
                     Yes
