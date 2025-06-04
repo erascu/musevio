@@ -24,6 +24,8 @@ interface Props {
   classification: string;
   dated: number | string;
   editCards?: boolean;
+  newCollectionSect?: string;
+  collection?: string;
   className?: string;
 }
 
@@ -35,6 +37,8 @@ export const ArtworkCard: React.FC<Props> = ({
   dated,
   imageUrl,
   editCards,
+  newCollectionSect,
+  collection,
   className,
 }) => {
   // const addFavItem = useFavItemsStore((state) => state.addFavItem);
@@ -42,13 +46,16 @@ export const ArtworkCard: React.FC<Props> = ({
   const toggleFavItem = useFavItemsStore((state) => state.toggleFavItem);
   const isActive = useFavItemsStore((state) => state.isActive(id, section));
 
-  const newCol = useNewCollectionStore((state) => state.newCollection);
+  const newCollection = useNewCollectionStore((state) => state.newCollection);
+  const moveToCollection = useFavItemsStore((state) => state.moveToCollection);
 
   return (
     <div
       className={cn(
         `bg-card rounded-lg ${
-          newCol.length > 0 && editCards ? "min-h-[400px]" : "min-h-[350px]"
+          newCollection.length > 0 && editCards
+            ? "min-h-[400px]"
+            : "min-h-[350px]"
         } shadow-md  relative`,
         className
       )}
@@ -69,6 +76,7 @@ export const ArtworkCard: React.FC<Props> = ({
             toggleFavItem({
               id,
               section,
+              collection,
               title,
               classification,
               dated,
@@ -103,17 +111,21 @@ export const ArtworkCard: React.FC<Props> = ({
         <p className="!text-base text-ring italic">{classification}</p>
         <p className="!text-base">{dated}</p>
         <div className="absolute right-14 bottom-4">
-          {newCol.length > 0 && editCards && (
-            <Select onValueChange={(sectionName) => console.log(sectionName)}>
+          {newCollection.length > 0 && editCards && (
+            <Select
+              value={newCollectionSect || ""}
+              onValueChange={(value) => moveToCollection(id, value)}
+            >
               <SelectTrigger className="w-[200px]">
                 <SelectValue placeholder="Move to..." />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {newCol
-                    ? newCol.map((item, i) => (
-                        <SelectItem value={item} key={i}>
-                          {item}
+                  {/* <SelectItem value="Saved Works">Saved Works</SelectItem> */}
+                  {newCollection
+                    ? newCollection.map((col) => (
+                        <SelectItem key={col} value={col}>
+                          {col}
                         </SelectItem>
                       ))
                     : ""}
