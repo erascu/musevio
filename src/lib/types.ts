@@ -92,6 +92,7 @@ export interface FavItem {
   type?: string;
   technique?: string;
   collection?: string;
+  newCollectionSect?: string;
   creation_date?: number | string;
   creators?: [
     {
