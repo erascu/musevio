@@ -9,6 +9,8 @@ interface FavItemsState {
 
   toggleFavItem: (item: FavItem) => void;
   isActive: (id: number, section: string) => boolean;
+
+  moveToCollection: (id: number, newCollectionSect: string) => void;
 }
 
 export const useFavItemsStore = create<FavItemsState>()(
@@ -41,6 +43,13 @@ export const useFavItemsStore = create<FavItemsState>()(
         get().favItems.some(
           (item) => item.id === id && item.section === section
         ),
+
+      moveToCollection: (id, newCollectionSect) =>
+        set((state) => ({
+          favItems: state.favItems.map((item) =>
+            item.id === id ? { ...item, newCollectionSect } : item
+          ),
+        })),
     }),
     {
       name: "fav-items-storage",
