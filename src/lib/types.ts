@@ -75,3 +75,33 @@ export interface FineArtItemProps {
     };
   };
 }
+
+export interface FavItem {
+  id: number;
+  section: string;
+  title?: string;
+  imageUrl?: string;
+  editCards?: boolean;
+  classification?: string;
+  medium?: string;
+  period?: string;
+  dated?: string | number;
+  department?: string;
+  primaryimageurl?: string;
+  description?: string;
+  type?: string;
+  technique?: string;
+  collection?: string;
+  newCollectionSect?: string;
+  creation_date?: number | string;
+  creators?: [
+    {
+      description: string;
+    }
+  ];
+  images?: {
+    web: {
+      url: string;
+    };
+  };
+}

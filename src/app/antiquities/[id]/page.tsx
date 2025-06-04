@@ -1,5 +1,5 @@
 import NotFound from "@/app/not-found";
-import { getItem } from "@/app/services/api";
+import { getItem } from "@/services/api";
 import { Container } from "@/components/shared";
 
 export default async function ItemPage({
