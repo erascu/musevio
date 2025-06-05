@@ -92,7 +92,7 @@ export const ArtworkCard: React.FC<Props> = ({
           <Heart
             strokeWidth={2}
             size={20}
-            className={`group-hover:transition-all group-hover:text-wine group-active:text-wine group-active:fill-wine group-focus:fill-wine group-focus:text-wine ${
+            className={`group-hover:transition-all group-hover:text-wine group-active:text-wine group-active:fill-wine ${
               isActive && "text-wine fill-wine"
             }`}
           />
