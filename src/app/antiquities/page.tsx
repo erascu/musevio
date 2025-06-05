@@ -2,14 +2,13 @@ import {
   Categories,
   Container,
   SortPopup,
-  CardSkeleton,
   PaginationWithLinks,
   SearchInput,
 } from "@/components/shared";
-import React, { Suspense } from "react";
+import React from "react";
 import { getAntiquities } from "@/services/api";
-import AntqsItems from "@/components/shared/antqs-items";
 import NotFound from "../not-found";
+import AntqsItems from "@/components/shared/antqs-items";
 
 const antiquityCats = [
   { name: "All", filterString: "All" },
@@ -61,19 +60,13 @@ export default async function Antiquities({ searchParams }: ItemsProps) {
             No &apos;{searchQuery}&apos; records found
           </div>
         )}
-        <Suspense
-          fallback={[...new Array(8)].map((_, i) => (
-            <CardSkeleton key={i} />
-          ))}
-        >
-          <AntqsItems
-            page={currentPage}
-            filter={filter}
-            searchQuery={searchQuery}
-            sort={sort}
-            sortorder={sortorder}
-          />
-        </Suspense>
+        <AntqsItems
+          page={currentPage}
+          filter={filter}
+          searchQuery={searchQuery}
+          sort={sort}
+          sortorder={sortorder}
+        />
       </div>
       {!(recordsInfo.page > recordsInfo.pages || totalRecords === 0) && (
         <div className="pb-8">
