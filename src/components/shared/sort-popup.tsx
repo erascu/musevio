@@ -10,10 +10,10 @@ interface Props {
 
 const sortItems = [
   { label: "views", value: { sort: "totalpageviews", sortorder: "desc" } },
-  { label: "rank desc", value: { sort: "rank", sortorder: "desc" } },
-  { label: "rank asc", value: { sort: "rank", sortorder: "asc" } },
-  { label: "date desc", value: { sort: "createdate", sortorder: "desc" } },
-  { label: "date asc", value: { sort: "createdate", sortorder: "asc" } },
+  { label: "rank ↓", value: { sort: "rank", sortorder: "desc" } },
+  { label: "rank ↑", value: { sort: "rank", sortorder: "asc" } },
+  { label: "updated ↓", value: { sort: "createdate", sortorder: "desc" } },
+  { label: "updated ↑", value: { sort: "createdate", sortorder: "asc" } },
 ];
 
 export const SortPopup: React.FC<Props> = ({ className }) => {
