@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Button, Input } from "../ui";
 import { CircleCheckBig, Plus, Trash2, X } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter, usePathname } from "next/navigation";
 import {
   Dialog,
   DialogClose,
@@ -24,6 +24,10 @@ interface Props {
 }
 
 export const SavedColPanel: React.FC<Props> = ({ className }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const regex = /^\/collections$/;
+
   const [input, setInput] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const { section } = useParams<{ section: string }>();
@@ -114,18 +118,14 @@ export const SavedColPanel: React.FC<Props> = ({ className }) => {
             </Button>
           </Link>
           <Dialog>
-            {decodeURIComponent(section) === title ? (
-              ""
-            ) : (
-              <DialogTrigger asChild>
-                <Button
-                  variant="add"
-                  className="lg:w-[50px] lg:h-[50px] w-[33.75px] h-[33.75px] !p-2 ml-2 mt-3 lg:inline-flex"
-                >
-                  <Trash2 className="lg:w-[24px] lg:h-[24px] w-[16px] h-[16px]" />
-                </Button>
-              </DialogTrigger>
-            )}
+            <DialogTrigger asChild>
+              <Button
+                variant="add"
+                className="lg:w-[50px] lg:h-[50px] w-[33.75px] h-[33.75px] !p-2 ml-2 mt-3 lg:inline-flex"
+              >
+                <Trash2 className="lg:w-[24px] lg:h-[24px] w-[16px] h-[16px]" />
+              </Button>
+            </DialogTrigger>
             <DialogContent className="sm:max-w-[250px]">
               <DialogHeader>
                 <DialogTitle>Are you sure?</DialogTitle>
@@ -139,8 +139,16 @@ export const SavedColPanel: React.FC<Props> = ({ className }) => {
                   <Button
                     className="font-[300]"
                     onClick={() => {
-                      removeNewCollection(title);
-                      removeCollectionItems(title);
+                      if (regex.test(pathname)) {
+                        removeNewCollection(title);
+                        removeCollectionItems(title);
+                      } else {
+                        router.push("/collections");
+                        setTimeout(() => {
+                          removeNewCollection(title);
+                          removeCollectionItems(title);
+                        }, 300);
+                      }
                     }}
                   >
                     Yes
