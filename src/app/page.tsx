@@ -1,10 +1,14 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
-import { Container } from "@/components/shared";
+import { Container, HomeSkeleton } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <Container className="px-4 my-0 pb-12 lg:pt-4 lg:pb-4 lg:my-20">
       <section className="flex justify-center">
@@ -28,13 +32,22 @@ export default function Home() {
               </Button>
             </Link>
           </div>
-          <div>
+          <div className="relative">
+            {isLoading && (
+              <HomeSkeleton className="absolute z-10 w-full h-full" />
+            )}
             <Image
               src="/musevio-main.jpg"
               alt="Museum gallery"
               width={585}
               height={389}
-              className="rounded-lg lg:min-w-[450px] max-w-[100%]"
+              className={`transition-opacity duration-300 ${
+                isLoading
+                  ? "opacity-0"
+                  : "opacity-100 rounded-lg lg:min-w-[450px] max-w-[100%]"
+              }`}
+              onLoad={() => setIsLoading(false)}
+              priority
             />
           </div>
         </div>
