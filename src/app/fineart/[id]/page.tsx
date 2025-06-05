@@ -29,7 +29,7 @@ interface FineArtItems {
 export default function ItemPage() {
   // const itemId = (await params).id;
   // const itemInfo = await getFineArtItem(itemId);
-  const [fineArtItems, setFineArtItems] = useState<FineArtItems>([]);
+  const [fineArtItems, setFineArtItems] = useState<FineArtItems>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
