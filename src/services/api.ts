@@ -1,6 +1,6 @@
 import { Antiquity, ItemProps, FineArt, FineArtItemProps } from "@/lib/types";
 
-const apiKey: string = "e33e0c2d-531f-4088-a7b8-7f27ccf0b27d";
+const apiKey = process.env.NEXT_PUBLIC_HARVARD_API_KEY!;
 
 export async function getAntiquities(
   page: number,
