@@ -9,18 +9,10 @@ export default function About() {
       <div className="w-[250px] border-b pb-3">
         <h1 className="playfair !text-4xl font-bold">About</h1>
       </div>
-      <div className="pt-8 pb-12 flex flex-col items-center lg:items-start lg:flex-row">
+      <div className="pt-5 pb-12 flex flex-col items-center lg:items-start lg:flex-row">
         <div className="lg:w-[50%] max-w-[600px]">
           <div>
-            <div>
-              <h2 className="playfair !text-3xl font-bold min-[420px]:!text-4xl">
-                Welcome to Musevio
-              </h2>
-              <h3 className="font-[300]">
-                Your Curated Gateway to the Past and the Sublime.
-              </h3>
-            </div>
-            <p className="mt-7 font-[300]">
+            <p className="font-[300]">
               <span className="font-normal text-wine mr-1.5">
                 Musevio (Museum Visual Information Online)
               </span>
@@ -68,7 +60,7 @@ export default function About() {
           </div>
         </div>
         <div className="lg:ml-15 ml-0 lg:w-[50%] max-w-[600px] mt-10 lg:mt-0">
-          <div>
+          <div className="lg:mt-[-4px] mt-0">
             <div className="flex items-center">
               <h2 className="playfair !text-3xl font-bold min-[420px]:!text-4xl">
                 Explore the Code
@@ -191,22 +183,25 @@ export default function About() {
                 </Link>
               </div>
               <div className="flex items-center mt-3">
-                <Link href="https://www.clevelandart.org/home" target="_blank">
+                <Link href="https://harvardartmuseums.org/" target="_blank">
                   <Image
-                    src="/clevland.svg"
-                    alt="The Cleveland Museum of Art Logo"
-                    width={172}
-                    height={23}
+                    src="/harvard.svg"
+                    alt="Harvard Art Museums Logo"
+                    width={180}
+                    height={42}
                     className="transition-all hover:-translate-y-1"
                   />
                 </Link>
                 <div className="ml-5">
-                  <Link href="https://harvardartmuseums.org/" target="_blank">
+                  <Link
+                    href="https://www.clevelandart.org/home"
+                    target="_blank"
+                  >
                     <Image
-                      src="/harvard.svg"
-                      alt="Harvard Art Museums Logo"
-                      width={180}
-                      height={42}
+                      src="/clevland.svg"
+                      alt="The Cleveland Museum of Art Logo"
+                      width={172}
+                      height={23}
                       className="transition-all hover:-translate-y-1"
                     />
                   </Link>
