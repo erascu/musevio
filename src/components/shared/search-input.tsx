@@ -46,7 +46,11 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={cn("relative", className)}>
+      <label htmlFor="searchInput" className="sr-only">
+        Search
+      </label>
       <Input
+        id="searchInput"
         ref={inputRef}
         placeholder="Search"
         value={search}
@@ -59,6 +63,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
           variant="ghost"
           className="absolute top-1/4 right-0"
           onClick={clearInput}
+          aria-label="Clear search input"
         >
           <X strokeWidth={1.5} className="text-ring" />
         </Button>
@@ -66,6 +71,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
       <Search
         strokeWidth={1.5}
         className="text-ring absolute top-[5px] left-[7px]"
+        aria-hidden="true"
       />
     </div>
   );
