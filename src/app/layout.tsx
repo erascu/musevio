@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="flex-auto">{children}</main>
-        <Toaster position="top-center" />
+        <Toaster position="top-center" richColors />
         <Footer />
       </body>
     </html>
