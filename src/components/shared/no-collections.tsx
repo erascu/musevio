@@ -27,7 +27,7 @@ export const NoCollections: React.FC<Props> = ({ className }) => {
         <div className="flex flex-col items-center">
           <p className="mt-3 text-ring lg:!text-base lg:max-w-[650px] max-w-[335px] text-center">
             Start curating your personal collection by exploring antiquities and
-            fine art. Tap the heart icon on any piece to save it here.
+            fine art. Tap the heart icon on any piece to save.
           </p>
         </div>
       </Container>
