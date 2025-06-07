@@ -9,6 +9,7 @@ export { HomeSkeleton } from "./skeletons/home-skeleton";
 export { InfoSkeleton } from "./skeletons/info-skeleton";
 export { CardSkeleton } from "./skeletons/card-skeleton";
 export { SearchInput } from "./search-input";
+export { ContactForm } from "./contact-form";
 export { PaginationWithLinks } from "./pagination-with-links";
 export { SavedColPanel } from "./savedCol-panel";
 export { Footer } from "./footer";
