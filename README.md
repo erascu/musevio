@@ -1,6 +1,10 @@
 # <img src="https://raw.githubusercontent.com/erascu/musevio/refs/heads/main/public/logo.png" width="500">
 
 **Musevio** is a virtual museum web app that allows users to navigate and explore artwork from multiple museums.</br></br>
+[![Musevio – Virtual Art Gallery Web App Walkthrough](https://github.com/erascu/musevio/blob/main/public/youtube.png)](https://youtu.be/FP_KneqBrfo "Musevio – Virtual Art Gallery Web App Walkthrough")
+
+## ✨ Features
+
 Users can:
 
 - Learn more about the app
