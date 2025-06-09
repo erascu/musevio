@@ -73,7 +73,32 @@ Create a `.env.local` file in the root directory and add:
 NEXT_PUBLIC_HARVARD_API_KEY=your_api_key_here
 ```
 
-> ⚠️ If you’re not using the API key yet, this step can be skipped for now.
+> ⚠️ If you’re not using the API key yet, this step can be skipped for now.</br>
+
+**Optional: Enable Contact Form Functionality**</br>
+If you want the **Contact Form** on the site to actually send messages, you’ll need to provide a POST API endpoint that accepts JSON payloads.
+
+Add the following to your `.env.local`:
+
+```bash
+POST_MESSAGE=https://your-api-endpoint.com/api/send
+```
+
+The API must accept POST requests with this structure:
+
+```bash
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com",
+  "message": "Your message here"
+}
+```
+
+On successful submission, the API should respond with a `200 OK` status.
+If you don’t provide a valid endpoint or use a mock server, form submissions will fail and an error message will be shown to the user.</br>
+
+You can use a custom API like [MockAPI.io](http://mockapi.io/).
 
 ### 4. Start the Development Server
 
