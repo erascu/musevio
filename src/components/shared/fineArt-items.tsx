@@ -68,7 +68,17 @@ export default function FineArtItems({
               dated={item.creation_date}
             />
           ))}
-      {error && <div>Digidon</div>}
+      {error && (
+        <div>
+          <h2 className="text-wine font-semibold playfair !text-lg">
+            Oops! Something went wrong.
+          </h2>
+          <p className="!text-sm font-light italic">
+            Please try reloading the page. If the issue continues, come back
+            later.
+          </p>
+        </div>
+      )}
     </>
   );
 }
