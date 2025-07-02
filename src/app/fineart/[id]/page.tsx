@@ -87,11 +87,7 @@ export default function ItemPage() {
           </div>
           <div className="h-full min-[580px]:w-[500px] max-w-[500px] lg:max-h-[550px] min-[500px]:max-h-[400px] max-h-[300px] overflow-hidden bg-gray-100 flex items-start justify-center rounded-xl">
             <img
-              src={
-                fineArtItems.images.web.url
-                  ? fineArtItems.images.web.url
-                  : "/no-img.svg"
-              }
+              src={fineArtItems?.images?.web?.url ?? "/no-img.svg"}
               alt={fineArtItems?.title}
               className="h-auto w-full object-contain"
             />
