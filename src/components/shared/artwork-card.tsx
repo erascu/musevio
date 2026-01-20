@@ -1,6 +1,5 @@
 "use client";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui";
@@ -60,14 +59,13 @@ export const ArtworkCard: React.FC<Props> = ({
         className
       )}
     >
-      <div className="relative h-[165px] w-[full]">
-        <Image
-          loading="lazy"
-          src={imageUrl ? imageUrl : "no-img.svg"}
+      <div className="relative h-[165px] w-full">
+        <img
+          src={imageUrl || "/no-img.svg"}
           alt={title}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="rounded-t-lg object-cover"
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          className="h-full w-full rounded-t-lg object-cover"
           style={{ objectPosition: "center 25%" }}
         />
         <Button
